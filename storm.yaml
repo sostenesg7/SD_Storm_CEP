@@ -16,24 +16,14 @@
 
 ########### These MUST be filled in for a storm configuration
 storm.zookeeper.servers:
-     - "10.0.0.10"
+     - "debian.zookeeper"
 #     - "server2"
-# 
-
+#10.0.0.10
+nimbus.seeds: ["debian.nimbus"]
+#10.0.0.11
 storm.supervisor.hosts:
-     - "10.0.0.9"
-#     - "server2"
-
-supervisor.slots.ports:
- - 6700
- - 6701
- - 6702
- - 6703
-
-#ui.port: 3000
-
-nimbus.seeds: ["10.0.0.11"]
-# 
+     - "debian.supervisor"
+# 10.0.0.9
 # 
 # ##### These may optionally be filled in:
 #    
@@ -86,3 +76,33 @@ nimbus.seeds: ["10.0.0.11"]
 #       - endpoint: "metrics-collector.mycompany.org"
 #
 # storm.cluster.metrics.consumer.publish.interval.secs: 60
+
+# Event Logger
+# topology.event.logger.register:
+#   - class: "org.apache.storm.metric.FileBasedEventLogger"
+#   - class: "org.mycompany.MyEventLogger"
+#     arguments:
+#       endpoint: "event-logger.mycompany.org"
+
+# Metrics v2 configuration (optional)
+#storm.metrics.reporters:
+#  # Graphite Reporter
+#  - class: "org.apache.storm.metrics2.reporters.GraphiteStormReporter"
+#    daemons:
+#        - "supervisor"
+#        - "nimbus"
+#        - "worker"
+#    report.period: 60
+#    report.period.units: "SECONDS"
+#    graphite.host: "localhost"
+#    graphite.port: 2003
+#
+#  # Console Reporter
+#  - class: "org.apache.storm.metrics2.reporters.ConsoleStormReporter"
+#    daemons:
+#        - "worker"
+#    report.period: 10
+#    report.period.units: "SECONDS"
+#    filter:
+#        class: "org.apache.storm.metrics2.filters.RegexFilter"
+#        expression: ".*my_component.*emitted.*"
