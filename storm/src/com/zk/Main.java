@@ -25,11 +25,11 @@ public class Main {
 		TopologyBuilder builder = new TopologyBuilder();
 		
 		//Para cada compomente, devemos passar uma inst�ncia e um label/r�tulo.
-		builder.setSpout("array-spout", new ArraySpout());
+		builder.setSpout("accident-spout", new AccidentSpout());
 
 		//Para cada compomente, devemos passar uma inst�ncia e um label/r�tulo.
 		//Note que no final da linha abaixo, devemos mencionar o componente que enviar� os dados para esse bolt (no caso o array-spout).
-		builder.setBolt("splitter-bolt", new SplitterBolt()).shuffleGrouping("array-spout");
+		builder.setBolt("splitter-bolt", new SplitterBolt()).shuffleGrouping("accident-spout");
 
 		//Estamos aqui declarando um novo Bolt (counter-bolt), 
 		//e informando ao storm que os dados/input para esse novo bolt ser�o enviados pelo bolt anterior (splitter-bolt).
@@ -43,8 +43,8 @@ public class Main {
         //config.setNumWorkers(20);
         //config.setMaxSpoutPending(5000);
 
-        //LocalCluster local = new LocalCluster();
-		//local.submitTopology("upe-sd", config, builder.createTopology());
+        LocalCluster local = new LocalCluster();
+		local.submitTopology("upe-sd", config, builder.createTopology());
 
 		try {
 			StormSubmitter.submitTopology("upe-sd", config, builder.createTopology());
