@@ -29,6 +29,7 @@ public class AccidentSpout implements IRichSpout {
 	@Override
 	public void open(Map arg0, TopologyContext context, SpoutOutputCollector arg2) {
 		this.collector = arg2;
+		System.out.println("ARRGGG ==>> " + this.collector);
 	}
 
 	/*
@@ -40,14 +41,17 @@ public class AccidentSpout implements IRichSpout {
 		System.out.println("---------------------");
 		System.out.println("AccidentSpout --> nextTuple");
 		
-		try(Reader reader = new InputStreamReader(Main.class.getResourceAsStream("data.json"), "UTF-8")){
+		try {
+			Reader reader = new InputStreamReader(Main.class.getResourceAsStream("data.json"), "UTF-8");
 			Gson gson = new Gson();
 			AccidentModel model = gson.fromJson(reader, AccidentModel.class);
 			for (AccidentModel.Container container : model) {
-			    String innerJson = gson.toJson(container);
-			   // System.out.println(container.situacao);
-			    this.collector.emit(new Values(innerJson));
-			    Thread.sleep(1000);
+				if (container != null) { 
+					String innerJson = gson.toJson(container);
+					   // System.out.println(container.situacao);
+					    this.collector.emit(new Values(innerJson));
+					    Thread.sleep(0);
+				}
 			}
         } catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

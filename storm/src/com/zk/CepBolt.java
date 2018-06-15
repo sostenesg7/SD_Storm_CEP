@@ -8,20 +8,13 @@ import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichBolt;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Tuple;
+import org.apache.storm.tuple.Values;
 
-/** 
- * Devemos implementar a classe IRichBolt para criarmos um Bolt na plataforma Storm
- * 
- * Lembrando que para esse c�digo funcionar, devemos importar as Libs do Storm.
- * Em sala de aula utilizamos a vers�o 1.0.2
- */ 
-public class CountBolt implements IRichBolt {
+import com.google.gson.Gson;
+
+public class CepBolt implements IRichBolt {
 	
 	private static final long serialVersionUID = 1L;
-	
-	//Estruturas de dados usadas para contar as palavras (sugest�o do ga�cho P�ricles).
-	private ArrayList<String> palavras = new ArrayList<String>();
-	private ArrayList<Integer> contador = new ArrayList<Integer>();
 
 	/*
 	 * M�todo chamado pela plataforma. Como este bolt est� localizado no final da nossa topologia, 
@@ -37,22 +30,17 @@ public class CountBolt implements IRichBolt {
 	 */
 	@Override
 	public void execute(Tuple input) {
-		System.out.println("CountBolt --> execute");
+		System.out.println("CepBolt --> execute");
 
 		String word = input.getString(0);
 		
-		int idx = palavras.indexOf(word);
-		if(idx != -1) {
-			contador.set(idx, contador.get(idx)+1);
-		} else {
-			palavras.add(word);
-			contador.add(1);
-		}
+		Gson gson = new Gson();
 		
-		if((idx % 10) == 0) {
-			System.out.println(palavras.toString());
-			System.out.println(contador.toString());
-		}
+		AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
+		
+		// processamento
+		System.out.println(word);
+		
 	}
 
 

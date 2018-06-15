@@ -27,14 +27,9 @@ public class Main {
 		//Para cada compomente, devemos passar uma inst�ncia e um label/r�tulo.
 		builder.setSpout("accident-spout", new AccidentSpout());
 
-		//Para cada compomente, devemos passar uma inst�ncia e um label/r�tulo.
-		//Note que no final da linha abaixo, devemos mencionar o componente que enviar� os dados para esse bolt (no caso o array-spout).
-		//builder.setBolt("splitter-bolt", new SplitterBolt()).shuffleGrouping("accident-spout");
-
-		//Estamos aqui declarando um novo Bolt (counter-bolt), 
-		//e informando ao storm que os dados/input para esse novo bolt ser�o enviados pelo bolt anterior (splitter-bolt).
-		//Note que com isso estamos declarando os componentes e as rela��es entre eles.
-		builder.setBolt("counter-bolt", new CountAccidentBolt()).shuffleGrouping("accident-spout");
+		builder.setBolt("select-bolt", new SelectAccidentBolt()).shuffleGrouping("accident-spout");
+		
+		builder.setBolt("cep-bolt", new CepBolt()).shuffleGrouping("select-bolt");
 		
 		//Como n�o estamos trabalhando com o ambiente em produ��o, e sim localmente, devemos "simular" um storm atrav�s da classe LocalCluster.
 		//Uma vez criado, podemos submeter a nossa topologia para esse cluster local.
@@ -44,10 +39,10 @@ public class Main {
         //config.setMaxSpoutPending(5000);
 
         LocalCluster local = new LocalCluster();
-		local.submitTopology("upe-sd", config, builder.createTopology());
+		local.submitTopology("upe-sd1", config, builder.createTopology());
 
 		try {
-			StormSubmitter.submitTopology("upe-sd", config, builder.createTopology());
+			StormSubmitter.submitTopology("upe-sd1", config, builder.createTopology());
 		} catch (AlreadyAliveException | InvalidTopologyException | AuthorizationException e) {
 			e.printStackTrace();
 		}
