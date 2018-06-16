@@ -15,7 +15,7 @@ import org.apache.storm.tuple.Values;
 
 import com.google.gson.Gson;
 
-public class AccidentSpout implements IRichSpout {
+public class InfringementSpout implements IRichSpout {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -42,15 +42,15 @@ public class AccidentSpout implements IRichSpout {
 		System.out.println("AccidentSpout --> nextTuple");
 		
 		try {
-			Reader reader = new InputStreamReader(Main.class.getResourceAsStream("acidentes.json"), "UTF-8");
+			Reader reader = new InputStreamReader(Main.class.getResourceAsStream("infracoes.json"), "UTF-8");
 			Gson gson = new Gson();
-			AccidentModel model = gson.fromJson(reader, AccidentModel.class);
-			for (AccidentModel.Container container : model) {
+			InfringementModel model = gson.fromJson(reader, InfringementModel.class);
+			for (InfringementModel.Container container : model) {
 				if (container != null) { 
 					String innerJson = gson.toJson(container);
 					   // System.out.println(container.situacao);
 					    this.collector.emit(new Values(innerJson));
-					    Thread.sleep(0);
+					    Thread.sleep(10);
 				}
 			}
         } catch (UnsupportedEncodingException e) {
@@ -73,7 +73,7 @@ public class AccidentSpout implements IRichSpout {
 	 */
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("accident"));
+		declarer.declare(new Fields("infrigement"));
 	}
 
 	@Override

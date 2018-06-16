@@ -25,11 +25,18 @@ public class Main {
 		TopologyBuilder builder = new TopologyBuilder();
 		
 		//Para cada compomente, devemos passar uma inst�ncia e um label/r�tulo.
-		builder.setSpout("accident-spout", new AccidentSpout());
+		//builder.setSpout("accident-spout", new AccidentSpout());
 
-		builder.setBolt("select-bolt", new SelectAccidentBolt()).shuffleGrouping("accident-spout");
+		//builder.setBolt("select-bolt", new SelectAccidentBolt()).shuffleGrouping("accident-spout");
 		
-		builder.setBolt("cep-bolt", new CepBolt()).shuffleGrouping("select-bolt");
+		//builder.setBolt("cep-bolt", new CepBolt()).shuffleGrouping("select-bolt");
+
+		builder.setSpout("infringement-spout", new InfringementSpout());
+
+		builder.setBolt("selectInfringement-bolt", new SelectInfringementBolt()).shuffleGrouping("infringement-spout");
+		
+		builder.setBolt("cep-bolt", new CepBolt()).shuffleGrouping("selectInfringement-bolt");
+
 		
 		//Como n�o estamos trabalhando com o ambiente em produ��o, e sim localmente, devemos "simular" um storm atrav�s da classe LocalCluster.
 		//Uma vez criado, podemos submeter a nossa topologia para esse cluster local.

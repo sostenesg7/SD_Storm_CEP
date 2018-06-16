@@ -1,6 +1,5 @@
 package com.zk;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.storm.task.OutputCollector;
@@ -13,11 +12,13 @@ import org.apache.storm.tuple.Values;
 
 import com.google.gson.Gson;
 
-public class SelectAccidentBolt implements IRichBolt {
+public class SelectInfringementBolt implements IRichBolt {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private OutputCollector collector;
+	
+	private int filtroDeInfracoes[] = { 5380 };
 	
 	//Estruturas de dados usadas para contar as palavras (sugest�o do ga�cho P�ricles).
 	private int counter;
@@ -37,18 +38,22 @@ public class SelectAccidentBolt implements IRichBolt {
 	 */
 	@Override
 	public void execute(Tuple input) {
-		System.out.println("SelectAccidentBolt --> execute");
+		System.out.println("SelectInfringementBolt --> execute");
 
 		String word = input.getString(0);
 		
 		Gson gson = new Gson();
 		
-		AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
+		InfringementModel.Container model = gson.fromJson(word, InfringementModel.Container.class);
 		
-		if (model.vitimas != null) {
-			if (Integer.parseInt(model.vitimas) == 0) {
-				this.collector.emit(new Values(word));
-			}	
+		if (model.infracao != null) {
+			int infraTemp = Integer.parseInt(model.infracao);
+			for (int i = 0; i < this.filtroDeInfracoes.length; i++) {
+				if (infraTemp == this.filtroDeInfracoes[i]) {
+					this.collector.emit(new Values(word));
+					break;
+				}
+			}
 		}
 		
 	}
@@ -60,7 +65,7 @@ public class SelectAccidentBolt implements IRichBolt {
 	 */
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("acidentes"));
+		declarer.declare(new Fields("infracoes"));
 	}
 
 	@Override
