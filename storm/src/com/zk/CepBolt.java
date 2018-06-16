@@ -36,10 +36,18 @@ public class CepBolt implements IRichBolt {
 		
 		Gson gson = new Gson();
 		
-		AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
+		System.out.println("IDDD ==>> " + input.getSourceTask());
 		
 		// processamento
-		System.out.println(word);
+		
+		if (input.getSourceTask() == 6) {
+			InfringementModel.Container model = gson.fromJson(word, InfringementModel.Container.class);
+			System.out.println("<<< INFRAÇÃO >>>");
+		}
+		else {
+			AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
+			System.out.println("<<< ACIDENTE >>>");
+		}
 		
 	}
 

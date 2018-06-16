@@ -18,7 +18,9 @@ public class SelectInfringementBolt implements IRichBolt {
 	
 	private OutputCollector collector;
 	
-	private int filtroDeInfracoes[] = { 5380 };
+	private int filtroDeInfracoes[] = { 7455, 5380 };
+	
+	private TopologyContext context;
 	
 	//Estruturas de dados usadas para contar as palavras (sugest�o do ga�cho P�ricles).
 	private int counter;
@@ -30,6 +32,7 @@ public class SelectInfringementBolt implements IRichBolt {
 	@Override
 	public void prepare(Map arg0, TopologyContext arg1, OutputCollector arg2) {
 		this.collector = arg2;
+		this.context = arg1;
 	}
 	
 	/*
@@ -46,11 +49,14 @@ public class SelectInfringementBolt implements IRichBolt {
 		
 		InfringementModel.Container model = gson.fromJson(word, InfringementModel.Container.class);
 		
+		System.out.println("THIS TASK BOUT ID ==>> " + this.context.getThisTaskId());
+		
 		if (model.infracao != null) {
 			int infraTemp = Integer.parseInt(model.infracao);
 			for (int i = 0; i < this.filtroDeInfracoes.length; i++) {
 				if (infraTemp == this.filtroDeInfracoes[i]) {
 					this.collector.emit(new Values(word));
+					//this.collector.emitDirect(4, new Values(word));
 					break;
 				}
 			}

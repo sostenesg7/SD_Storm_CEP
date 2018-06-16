@@ -50,7 +50,8 @@ public class AccidentSpout implements IRichSpout {
 					String innerJson = gson.toJson(container);
 					   // System.out.println(container.situacao);
 					    this.collector.emit(new Values(innerJson));
-					    Thread.sleep(0);
+					    //this.collector.emitDirect(3, new Values(innerJson));
+					    Thread.sleep(10);
 				}
 			}
         } catch (UnsupportedEncodingException e) {

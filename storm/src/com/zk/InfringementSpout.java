@@ -21,6 +21,8 @@ public class InfringementSpout implements IRichSpout {
 	
 	//Atributo que guarda a referencia do OutputSpout para usar no metodo nextTuple()
 	private SpoutOutputCollector collector;
+	
+	private TopologyContext context;
 
 	/*
 	 * Aqui estamos implementando um m�todo do IRichSpout. 
@@ -29,7 +31,7 @@ public class InfringementSpout implements IRichSpout {
 	@Override
 	public void open(Map arg0, TopologyContext context, SpoutOutputCollector arg2) {
 		this.collector = arg2;
-		System.out.println("ARRGGG ==>> " + this.collector);
+		this.context = context;
 	}
 
 	/*
@@ -40,6 +42,8 @@ public class InfringementSpout implements IRichSpout {
 	public void nextTuple() {
 		System.out.println("---------------------");
 		System.out.println("AccidentSpout --> nextTuple");
+		
+		System.out.println("THIS TASK SPOUT ID ==>> " + this.context.getThisTaskId());
 		
 		try {
 			Reader reader = new InputStreamReader(Main.class.getResourceAsStream("infracoes.json"), "UTF-8");
