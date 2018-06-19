@@ -37,13 +37,13 @@ public class InfringementSpout implements IRichSpout {
 	 */
 	@Override
 	public void nextTuple() {
-		System.out.println("---------------------");
-		System.out.println("AccidentSpout --> nextTuple");
+		//System.out.println("---------------------");
+		//System.out.println("AccidentSpout --> nextTuple");
 		
-		System.out.println("THIS TASK SPOUT ID ==>> " + this.context.getThisTaskId());
+		//System.out.println("THIS TASK SPOUT ID ==>> " + this.context.getThisTaskId());
 		
 		try {
-			Reader reader = new InputStreamReader(new FileInputStream(new File("/home/infracoes.json").getAbsolutePath()), "UTF-8");
+			Reader reader = new InputStreamReader(new FileInputStream(new File("infracoes.json").getAbsolutePath()), "UTF-8");
 			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../infracoes.json"), "UTF-8");
 			Gson gson = new Gson();
 			InfringementModel model = gson.fromJson(reader, InfringementModel.class);

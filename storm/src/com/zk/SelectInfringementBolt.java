@@ -41,7 +41,7 @@ public class SelectInfringementBolt implements IRichBolt {
 	 */
 	@Override
 	public void execute(Tuple input) {
-		System.out.println("SelectInfringementBolt --> execute");
+		//System.out.println("SelectInfringementBolt --> execute");
 
 		String word = input.getString(0);
 		
@@ -49,13 +49,14 @@ public class SelectInfringementBolt implements IRichBolt {
 		
 		InfringementModel.Container model = gson.fromJson(word, InfringementModel.Container.class);
 		
-		System.out.println("THIS TASK BOUT ID ==>> " + this.context.getThisTaskId());
+		//System.out.println("THIS TASK BOUT ID ==>> " + this.context.getThisTaskId());
 		
 		if (model.infracao != null) {
 			int infraTemp = Integer.parseInt(model.infracao);
 			for (int i = 0; i < this.filtroDeInfracoes.length; i++) {
 				if (infraTemp == this.filtroDeInfracoes[i]) {
-					this.collector.emit(new Values(word));
+					this.collector.emit(new Values(model));
+                    //System.err.println("ERRR => " + model);
 					//this.collector.emitDirect(4, new Values(word));
 					break;
 				}

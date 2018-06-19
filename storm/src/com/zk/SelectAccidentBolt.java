@@ -38,17 +38,17 @@ public class SelectAccidentBolt implements IRichBolt {
 	@Override
 	public void execute(Tuple input) {
 
-		System.out.println("SelectAccidentBolt --> execute");
+		//System.out.println("SelectAccidentBolt --> execute");
 
 		String word = input.getString(0);
 		
 		Gson gson = new Gson();
 		
 		AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
-		
+
 		if (model.vitimas != null) {
-			if (Integer.parseInt(model.vitimas) == 0) {
-				this.collector.emit(new Values(word));
+			if (Integer.parseInt(model.vitimas) > 0) {
+				this.collector.emit(new Values(model));
 			}	
 		}
 		

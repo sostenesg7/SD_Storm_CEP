@@ -1,10 +1,11 @@
 package com.zk;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class InfringementModel extends ArrayList<InfringementModel.Container> {
 	
-    public class Container {
+    public class Container implements Serializable {
     	public String datainfracao;
         public String horainfracao;
         public String dataimplantacao;

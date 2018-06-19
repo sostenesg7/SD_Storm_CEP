@@ -26,7 +26,7 @@ public class AccidentSpout implements IRichSpout {
 	@Override
 	public void open(Map arg0, TopologyContext context, SpoutOutputCollector arg2) {
 		this.collector = arg2;
-		System.out.println("ARRGGG ==>> " + this.collector);
+		//System.out.println("ARRGGG ==>> " + this.collector);
 	}
 
 	/*
@@ -35,15 +35,15 @@ public class AccidentSpout implements IRichSpout {
 	 */
 	@Override
 	public void nextTuple() {
-		System.out.println("---------------------");
-		System.out.println("AccidentSpout --> nextTuple");
+		//System.out.println("---------------------");
+		//System.out.println("AccidentSpout --> nextTuple");
 		
 		try {
 			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../acidentes.json"), "UTF-8");
 
 			;
 
-			Reader reader = new InputStreamReader(new FileInputStream(new File("/home/acidentes.json").getAbsolutePath()), "UTF-8");
+			Reader reader = new InputStreamReader(new FileInputStream(new File("acidentes.json").getAbsolutePath()), "UTF-8");
 			//System.out.println(new File("/home/a.txt").getAbsolutePath());
 
 			Gson gson = new Gson();

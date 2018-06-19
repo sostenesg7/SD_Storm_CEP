@@ -30,24 +30,25 @@ public class CepBolt implements IRichBolt {
 	 */
 	@Override
 	public void execute(Tuple input) {
-		System.out.println("CepBolt --> execute");
+		//System.out.println("CepBolt --> execute");
 
-		String word = input.getString(0);
+		Object word = input.getValue(0);
+
+        //System.out.println("CHEGOOUUUU ===>>> " + word);
 		
-		Gson gson = new Gson();
+		//Gson gson = new Gson();
 		
-		System.out.println("IDDD ==>> " + input.getSourceTask());
+		//System.out.println("IDDD ==>> " + input.getSourceTask());
 		
 		// processamento
 
-		if (input.getSourceTask() == 6) {
-			InfringementModel.Container model = gson.fromJson(word, InfringementModel.Container.class);
-			System.out.println("<<< INFRA��O >>>");
-		}
-		else {
-			AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
+		if (word instanceof AccidentModel.Container) {
+			//AccidentModel.Container model = gson.fromJson(word, AccidentModel.Container.class);
 			System.out.println("<<< ACIDENTE >>>");
 		}
+		else if (word instanceof InfringementModel.Container){
+            System.out.println("<<< INFRACAO >>>");
+        }
 
 	}
 

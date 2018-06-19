@@ -42,14 +42,14 @@ public class Main {
         config.setNumWorkers(2);
         //config.setMaxSpoutPending(5000);
 
-        //LocalCluster local = new LocalCluster();
-		//local.submitTopology("upe-sd1", config, builder.createTopology());
+        LocalCluster local = new LocalCluster();
+		local.submitTopology("noiz2", config, builder.createTopology());
 
-		try {
+		/*try {
 			StormSubmitter.submitTopology("noiz2", config, builder.createTopology());
 		} catch (AlreadyAliveException | InvalidTopologyException | AuthorizationException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

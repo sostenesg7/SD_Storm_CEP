@@ -1,10 +1,11 @@
 package com.zk;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AccidentModel extends ArrayList<AccidentModel.Container> {
 	
-    public class Container {
+    public class Container implements Serializable {
     	public String tipo;
         public String situacao;
         public String data;
