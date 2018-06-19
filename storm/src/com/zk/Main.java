@@ -39,14 +39,14 @@ public class Main {
 		//Uma vez criado, podemos submeter a nossa topologia para esse cluster local.
 		//Para ambientes em produ��o, a chamada � um pouco diferente. Veremos na pr�xima aula.
 
-        //config.setNumWorkers(20);
+        config.setNumWorkers(2);
         //config.setMaxSpoutPending(5000);
 
-        LocalCluster local = new LocalCluster();
-		local.submitTopology("upe-sd1", config, builder.createTopology());
+        //LocalCluster local = new LocalCluster();
+		//local.submitTopology("upe-sd1", config, builder.createTopology());
 
 		try {
-			StormSubmitter.submitTopology("upe-sd1", config, builder.createTopology());
+			StormSubmitter.submitTopology("noiz2", config, builder.createTopology());
 		} catch (AlreadyAliveException | InvalidTopologyException | AuthorizationException e) {
 			e.printStackTrace();
 		}

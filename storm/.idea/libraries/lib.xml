@@ -1,25 +1,26 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/asm-5.0.3.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/clojure-1.7.0.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/disruptor-3.3.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/kryo-3.0.3.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/log4j-api-2.8.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/log4j-core-2.8.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/log4j-over-slf4j-1.6.6.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/log4j-slf4j-impl-2.8.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/minlog-1.3.0.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/objenesis-2.1.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/reflectasm-1.10.1.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/servlet-api-2.5.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/slf4j-api-1.7.21.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/storm-rename-hack-1.1.2.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/storm-core-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/asm-5.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/clojure-1.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/disruptor-3.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/kryo-3.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/log4j-api-2.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/log4j-core-2.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/log4j-over-slf4j-1.6.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/log4j-slf4j-impl-2.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/minlog-1.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/objenesis-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/reflectasm-1.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/servlet-api-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/slf4j-api-1.7.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/storm-rename-hack-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/storm-core-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Desktop/SD/nimbus/lib/storm-core-1.1.2.jar!/org/apache/storm/shade" />
+      <root url="jar://$PROJECT_DIR$/../../nimbus/lib/storm-core-1.1.2.jar!/org/apache/storm/shade" />
     </SOURCES>
   </library>
 </component>

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="com.espertech:esper:7.1.0" type="repository">
+    <properties maven-id="com.espertech:esper:7.1.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/esper-7.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/antlr4-runtime-4.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/cglib-nodep-3.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/janino-3.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-compiler-3.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

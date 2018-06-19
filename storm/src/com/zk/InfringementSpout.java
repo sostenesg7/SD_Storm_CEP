@@ -1,9 +1,6 @@
 package com.zk;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.Map;
 
 import org.apache.storm.spout.SpoutOutputCollector;
@@ -46,13 +43,15 @@ public class InfringementSpout implements IRichSpout {
 		System.out.println("THIS TASK SPOUT ID ==>> " + this.context.getThisTaskId());
 		
 		try {
-			Reader reader = new InputStreamReader(Main.class.getResourceAsStream("infracoes.json"), "UTF-8");
+			Reader reader = new InputStreamReader(new FileInputStream(new File("/home/infracoes.json").getAbsolutePath()), "UTF-8");
+			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../infracoes.json"), "UTF-8");
 			Gson gson = new Gson();
 			InfringementModel model = gson.fromJson(reader, InfringementModel.class);
 			for (InfringementModel.Container container : model) {
 				if (container != null) { 
 					String innerJson = gson.toJson(container);
 					   // System.out.println(container.situacao);
+					//eMITIR COM O OBJETO
 					    this.collector.emit(new Values(innerJson));
 					    Thread.sleep(10);
 				}

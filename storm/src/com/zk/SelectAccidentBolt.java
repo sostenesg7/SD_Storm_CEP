@@ -37,6 +37,7 @@ public class SelectAccidentBolt implements IRichBolt {
 	 */
 	@Override
 	public void execute(Tuple input) {
+
 		System.out.println("SelectAccidentBolt --> execute");
 
 		String word = input.getString(0);

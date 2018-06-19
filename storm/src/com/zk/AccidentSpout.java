@@ -1,9 +1,6 @@
 package com.zk;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.Map;
 
 import org.apache.storm.spout.SpoutOutputCollector;
@@ -42,7 +39,13 @@ public class AccidentSpout implements IRichSpout {
 		System.out.println("AccidentSpout --> nextTuple");
 		
 		try {
-			Reader reader = new InputStreamReader(Main.class.getResourceAsStream("acidentes.json"), "UTF-8");
+			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../acidentes.json"), "UTF-8");
+
+			;
+
+			Reader reader = new InputStreamReader(new FileInputStream(new File("/home/acidentes.json").getAbsolutePath()), "UTF-8");
+			//System.out.println(new File("/home/a.txt").getAbsolutePath());
+
 			Gson gson = new Gson();
 			AccidentModel model = gson.fromJson(reader, AccidentModel.class);
 			for (AccidentModel.Container container : model) {
