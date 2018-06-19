@@ -18,7 +18,7 @@ public class SelectInfringementBolt implements IRichBolt {
 	
 	private OutputCollector collector;
 	
-	private int filtroDeInfracoes[] = { 7455, 5380 };
+	private int filtroDeInfracoes[] = {  6050, 7455, 5380 };
 	
 	private TopologyContext context;
 	

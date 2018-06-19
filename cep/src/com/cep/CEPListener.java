@@ -23,7 +23,8 @@ public class CEPListener implements UpdateListener {
 			
 			for (int i = 0; i < data1.length; i++) {
 				Object o = data1[i].getUnderlying();
-				
+
+
 				if(o instanceof Produto) {
 					//Log.log(Metrics.verboseCEP, "New taxi...");
 					

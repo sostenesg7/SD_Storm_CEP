@@ -17,6 +17,12 @@
       <root url="jar://$PROJECT_DIR$/../../nimbus/lib/storm-rename-hack-1.1.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../nimbus/lib/storm-core-1.1.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/gson-2.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../cep/lib/antlr4-runtime-4.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../cep/lib/cglib-nodep-3.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../cep/lib/commons-compiler-3.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../cep/lib/esper-7.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../cep/lib/janino-3.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../cep/lib/slf4j-api-1.7.25.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
