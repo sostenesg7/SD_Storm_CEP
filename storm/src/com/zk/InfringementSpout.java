@@ -29,6 +29,38 @@ public class InfringementSpout implements IRichSpout {
 	public void open(Map arg0, TopologyContext context, SpoutOutputCollector arg2) {
 		this.collector = arg2;
 		this.context = context;
+
+
+
+        try {
+            Reader reader = new InputStreamReader(new FileInputStream(new File("infracoes.json").getAbsolutePath()), "UTF-8");
+            //Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../infracoes.json"), "UTF-8");
+            Gson gson = new Gson();
+            InfringementModel model = gson.fromJson(reader, InfringementModel.class);
+
+            while (true) {
+
+                for (InfringementModel.Container container : model) {
+                    if (container != null) {
+                        String innerJson = gson.toJson(container);
+                        // System.out.println(container.situacao);
+                        //eMITIR COM O OBJETO
+                        this.collector.emit(new Values(innerJson));
+                        Thread.sleep(2);
+                    }
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
 	}
 
 	/*
@@ -41,42 +73,7 @@ public class InfringementSpout implements IRichSpout {
 		//System.out.println("AccidentSpout --> nextTuple");
 		
 		//System.out.println("THIS TASK SPOUT ID ==>> " + this.context.getThisTaskId());
-		
-		try {
-			Reader reader = new InputStreamReader(new FileInputStream(new File("infracoes.json").getAbsolutePath()), "UTF-8");
-			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../infracoes.json"), "UTF-8");
 
-
-            try {
-                Thread.sleep(1000);
-            }catch (InterruptedException iex){
-
-            }
-
-
-			System.out.println("----------------COMECANDO INFRACOES");
-
-			Gson gson = new Gson();
-			InfringementModel model = gson.fromJson(reader, InfringementModel.class);
-			for (InfringementModel.Container container : model) {
-				if (container != null) { 
-					String innerJson = gson.toJson(container);
-					   // System.out.println(container.situacao);
-					//eMITIR COM O OBJETO
-					    this.collector.emit(new Values(innerJson));
-					    Thread.sleep(0);
-				}
-			}
-        } catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 

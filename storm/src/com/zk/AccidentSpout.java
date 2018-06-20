@@ -27,6 +27,43 @@ public class AccidentSpout implements IRichSpout {
 	public void open(Map arg0, TopologyContext context, SpoutOutputCollector arg2) {
 		this.collector = arg2;
 		//System.out.println("ARRGGG ==>> " + this.collector);
+
+
+        try {
+            //Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../acidentes.json"), "UTF-8");
+
+            ;
+
+            Reader reader = new InputStreamReader(new FileInputStream(new File("acidentes.json").getAbsolutePath()), "UTF-8");
+            //System.out.println(new File("/home/a.txt").getAbsolutePath());
+
+            Gson gson = new Gson();
+            AccidentModel model = gson.fromJson(reader, AccidentModel.class);
+
+            while (true) {
+
+                for (AccidentModel.Container container : model) {
+                    if (container != null) {
+                        String innerJson = gson.toJson(container);
+                        // System.out.println(container.situacao);
+                        this.collector.emit(new Values(innerJson));
+                        //this.collector.emitDirect(3, new Values(innerJson));
+                        Thread.sleep(2);
+                    }
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
 	}
 
 	/*
@@ -37,45 +74,8 @@ public class AccidentSpout implements IRichSpout {
 	public void nextTuple() {
 		//System.out.println("---------------------");
 		//System.out.println("AccidentSpout --> nextTuple");
-		
-		try {
-			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../acidentes.json"), "UTF-8");
-
-			;
-
-			Reader reader = new InputStreamReader(new FileInputStream(new File("acidentes.json").getAbsolutePath()), "UTF-8");
-			//System.out.println(new File("/home/a.txt").getAbsolutePath());
 
 
-            try {
-                Thread.sleep(4000);
-            }catch (InterruptedException iex){
-
-            }
-
-			System.out.println("----------------COMECANDO ACIDENTES");
-
-			Gson gson = new Gson();
-			AccidentModel model = gson.fromJson(reader, AccidentModel.class);
-			for (AccidentModel.Container container : model) {
-				if (container != null) { 
-					String innerJson = gson.toJson(container);
-					   // System.out.println(container.situacao);
-					    this.collector.emit(new Values(innerJson));
-					    //this.collector.emitDirect(3, new Values(innerJson));
-					    Thread.sleep(0);
-				}
-			}
-        } catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 

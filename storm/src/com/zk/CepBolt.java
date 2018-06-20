@@ -61,17 +61,16 @@ public class CepBolt implements IRichBolt {
         "    -> middleevent=infringement(localcometimento != beginevent.localcometimento)" +
                 "         until endevent=accident(endereco = beginevent.localcometimento)]";
 */
+/*
 
+         String p = "every(inicio=infringement(localcometimento = 'AV GOV AGAMENON MAGALHAES'))" +
+                "    -> meio=infringement(localcometimento != inicio.localcometimento)" +
+                "         until fim=accident(endereco = inicio.localcometimento)";
+*/
 
-//PEGA AS INFRACOES E ACIDENTES DA AGAMENON
-/* String p = "every(infracao=infringement(localcometimento = 'AV GOV AGAMENON MAGALHAES'))" +
-                "    -> infringement(localcometimento != infracao.localcometimento)" +
-                "         until accident(endereco = infracao.localcometimento)";*/
-
-        //PEGA AS INFRACOES E ACIDENTES DE UM LOCAL QUALQUER
-         String p = "every(infracao=infringement)" +
-                "    -> infringement(localcometimento != infracao.localcometimento)" +
-                "         until accident(endereco = infracao.localcometimento)";
+        //PEGA AS INFRACOES E OS ACIDENTES DE QUALQUER LOCAL
+        String p = "every(infracao=infringement)" +
+                "->accident(endereco = infracao.localcometimento)";
 
 
 //String p = "every(a=accident)-> infringement (localcometimento = a.endereco)";
@@ -145,7 +144,7 @@ public class CepBolt implements IRichBolt {
                                 if(aux instanceof InfringementModel.Container){
   //                                  System.out.println("Infracao :>>" + ((InfringementModel.Container)(aux)).getLocalcometimento());
                                 }else if(aux instanceof AccidentModel.Container){
-    //                                System.out.println("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
+      //                             System.out.println("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
                                 }
 
 
@@ -209,14 +208,11 @@ public class CepBolt implements IRichBolt {
                                     aux= ((EventBean) events.get(key)).getUnderlying();
                                 }
 
-
-
                                 if(aux instanceof InfringementModel.Container){
   //                                  System.out.println("Infracao :>>" + ((InfringementModel.Container)(aux)).getLocalcometimento());
                                     LOG.info("Infracao :>>" + ((InfringementModel.Container)(aux)).getLocalcometimento());
-                                    LOG.info("POSSIVEL ACIDENTE IRA ACONTECER;");
                                 }else if(aux instanceof AccidentModel.Container){
-    //                                System.out.println("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
+                                    //System.out.println("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
                                     LOG.info("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
                                 }
 
