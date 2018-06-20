@@ -64,7 +64,7 @@ public class InfringementSpout implements IRichSpout {
 					   // System.out.println(container.situacao);
 					//eMITIR COM O OBJETO
 					    this.collector.emit(new Values(innerJson));
-					    Thread.sleep(10);
+					    Thread.sleep(0);
 				}
 			}
         } catch (UnsupportedEncodingException e) {
