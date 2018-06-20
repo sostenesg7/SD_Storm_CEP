@@ -179,7 +179,7 @@ public class CepBolt implements IRichBolt {
 
                             //InfringementModel.Container p = (InfringementModel.Container)o;
                             //System.out.println(p.getInfracao());
-                            System.out.println(((InfringementModel.Container)o).getInfracao());
+//                            System.out.println(((InfringementModel.Container)o).getInfracao());
                             LOG.info(((InfringementModel.Container)o).getInfracao());
 
                         } else if(o instanceof Map) {
@@ -202,12 +202,15 @@ public class CepBolt implements IRichBolt {
                                     aux= ((EventBean) events.get(key)).getUnderlying();
                                 }
 
+
+
                                 if(aux instanceof InfringementModel.Container){
-                                    System.out.println("Infracao :>>" + ((InfringementModel.Container)(aux)).getLocalcometimento());
+  //                                  System.out.println("Infracao :>>" + ((InfringementModel.Container)(aux)).getLocalcometimento());
                                     LOG.info("Infracao :>>" + ((InfringementModel.Container)(aux)).getLocalcometimento());
+                                    LOG.info("POSSIVEL ACIDENTE IRA ACONTECER;");
                                 }else if(aux instanceof AccidentModel.Container){
-                                    System.out.println("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
-                                    Log.info("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
+    //                                System.out.println("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
+                                    LOG.info("Acidente :>>" + ((AccidentModel.Container)(aux)).getEndereco());
                                 }
 
 
@@ -217,7 +220,7 @@ public class CepBolt implements IRichBolt {
                             //System.out.println(events.get("QTD"));
 
                         } else {
-                            System.out.println(o.toString());
+      //                      System.out.println(o.toString());
                             LOG.info(o.toString());
                         }
 

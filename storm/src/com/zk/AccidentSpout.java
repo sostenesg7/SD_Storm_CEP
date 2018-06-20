@@ -46,6 +46,15 @@ public class AccidentSpout implements IRichSpout {
 			Reader reader = new InputStreamReader(new FileInputStream(new File("acidentes.json").getAbsolutePath()), "UTF-8");
 			//System.out.println(new File("/home/a.txt").getAbsolutePath());
 
+
+            try {
+                Thread.sleep(4000);
+            }catch (InterruptedException iex){
+
+            }
+
+			System.out.println("----------------COMECANDO ACIDENTES");
+
 			Gson gson = new Gson();
 			AccidentModel model = gson.fromJson(reader, AccidentModel.class);
 			for (AccidentModel.Container container : model) {

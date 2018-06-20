@@ -45,6 +45,17 @@ public class InfringementSpout implements IRichSpout {
 		try {
 			Reader reader = new InputStreamReader(new FileInputStream(new File("infracoes.json").getAbsolutePath()), "UTF-8");
 			//Reader reader = new InputStreamReader(Main.class.getResourceAsStream("../../infracoes.json"), "UTF-8");
+
+
+            try {
+                Thread.sleep(1000);
+            }catch (InterruptedException iex){
+
+            }
+
+
+			System.out.println("----------------COMECANDO INFRACOES");
+
 			Gson gson = new Gson();
 			InfringementModel model = gson.fromJson(reader, InfringementModel.class);
 			for (InfringementModel.Container container : model) {
