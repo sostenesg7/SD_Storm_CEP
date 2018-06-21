@@ -41,7 +41,6 @@ public class AccidentSpout implements IRichSpout {
             AccidentModel model = gson.fromJson(reader, AccidentModel.class);
 
             while (true) {
-
                 for (AccidentModel.Container container : model) {
                     if (container != null) {
                         String innerJson = gson.toJson(container);

@@ -61,17 +61,16 @@ public class CepBolt implements IRichBolt {
         "    -> middleevent=infringement(localcometimento != beginevent.localcometimento)" +
                 "         until endevent=accident(endereco = beginevent.localcometimento)]";
 */
-/*
 
-         String p = "every(inicio=infringement(localcometimento = 'AV GOV AGAMENON MAGALHAES'))" +
-                "    -> meio=infringement(localcometimento != inicio.localcometimento)" +
+         String p = "every(inicio=infringement)" +
+                "    -> infringement(localcometimento != inicio.localcometimento)" +
                 "         until fim=accident(endereco = inicio.localcometimento)";
-*/
+
 
         //PEGA AS INFRACOES E OS ACIDENTES DE QUALQUER LOCAL
-        String p = "every(infracao=infringement)" +
+        /*String p = "every(infracao=infringement(localcometimento = 'AV GOV AGAMENON MAGALHAES'))" +
                 "->accident(endereco = infracao.localcometimento)";
-
+*/
 
 //String p = "every(a=accident)-> infringement (localcometimento = a.endereco)";
 
