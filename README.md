@@ -1,4 +1,5 @@
-# Segundo projeto para cadeira de Sistemas Distribuídos da UPE.
+# Real time data analysis using Storm and Espertech to identify possible vehicle accident after a transit infringement
 
--Coisas a fazer
-  -Usar Patter no Esper, para identificar os padroes e emitir eventos. Exemplo da camisa vermelha/preta e branca - que poderia ser Sport, Nautico ou Santa Cruz. (http://esper.sourceforge.net/esper-0.7.5/doc/reference/en/html/event_patterns.html, http://esper.espertech.com/release-5.4.0/esper-reference/html/event_patterns.html)
+This project have a main goal of identify possibles accident caused after a transit infringement. Thi is possible by crossing stream data about infringements and accidents on Recife city.
+
+After a happen transit infringement on some location, the pattern wait for a accident on same location, then show this infringement as possible cause to accident.
